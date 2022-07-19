@@ -1,17 +1,35 @@
-# Flatbox: Low profile hitbox-layout fightstick
+# Flatbox-ACR: Low profile hitbox-layout fightstick with Acrylic shell
 
-This repository contains 3D-printable models, PCB design files and code needed to make an arcade controller that looks like this:
+This flatbox design is based on [jfedor2/flatbox](https://github.com/jfedor2/flatbox) but with a few tweaks:
 
-![Assembled Flatbox](hardware-rev2/images/Flatbox-rev2b-finished-product.jpg)
+* Replaced the 3D printed case with Acrylic shell, allowing to insert printed artwork.
+* modified button layout to
+    * Accomodate for the clearance needed for acrylic cutting
+    * To mimic the layout of the original Hitbox button layout
+* Silk screen update
+    * Added small logo
+    * added legends for each buttons (SQUARE, CIRCLE etc.)
+    * moved logo to edge to minimize see-through when adding artwork on top
+* Patter changes
+    * GND Fill
+    * add vias to join gnd fill
+    * moved traces slightly to avoid GND islands and thin GND fills
+    * added reset button for Pro Micro board
+
+Final product when assembled will look something like the following:
+
+![Assembled Flatbox](hardware-rev1/images/Flatbox-rev1-finished-product.jpg)
+
+**TODO: replace with actual photo**
 
 There are four major versions of the Flatbox. They all use Kailh low profile (choc v1) mechanical keyboard switches. The table below lists their main features. See the README for each version for details on how to make them.
 
-version | [rev1.1](hardware-rev1.1) | [rev2](hardware-rev2) | [rev3](hardware-rev3) | [rev4](hardware-rev4)
-------- | ------------------------- | --------------------- | --------------------- | ---------------------
-case dimensions | 218x128x10mm | 218x130x10mm | 218x130x10mm | 218x130x10mm
-compatibility (using provided firmware) | PC, PS3 | PC, PS3 | PC, PS3, PS4 | PC, PS3
-add-on board | Arduino Pro Micro | - | [Brook PS3/PS4](https://www.brookaccessory.com/detail/58690501/) | -
-onboard chip | - | ATmega32U4 | - | RP2040
-port | micro USB | USB-C | USB-C | USB-C
-SMT assembly required | no | yes | yes | yes
-firmware | [ATmega32U4](firmware-atmega32u4) | [ATmega32U4](firmware-atmega32u4) | [Brook](https://www.brookaccessory.com/download/PS3/) | [RP2040](firmware-rp2040)
+version | [rev1](hardware-rev1) |
+------- | ------------------------- |
+case dimensions | 210x123.58x10mm |
+compatibility (using provided firmware) | PC, PS3 |
+add-on board | Arduino Pro Micro |
+onboard chip | - |
+port | micro USB or USB-C |
+SMT assembly required | no |
+firmware | [ATmega32U4](firmware-atmega32u4) |

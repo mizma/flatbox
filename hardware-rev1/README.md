@@ -70,6 +70,9 @@ If you have a 3D printer, print at your own will.  Files are found [here](../3d-
 I use [Elecrow](https://www.elecrow.com/acrylic-cutting.html) to cut acrylic.
 
 Upload the .zip file in [acrylic-shell](acrylic-shell/) to the Elecrow Acrylic cut service to order.
+.Zip file includes the dxf file and the dimentions.txt file.  PDF is just for reference.
+
+Layer 01 and 02 should be made of 3mm thickness.  Layer 03 ~ 05 should be made of 2mm thickness.
 
 The original design file (FreeCAD file) can be found [here](extras/acryl-design).
 
@@ -77,10 +80,23 @@ The Acrylic should look like the following (with PCB stacked)
 
 ![Flatbox-rev1-Acrylic-Stack](images/Flatbox-rev1-Acrylic-Stack.jpg)
 
+### Assembly
+
+1. Solder all the Choc v1 switches and the tactile switches.  make sure you populate the side with the logo.
+    * If you populate the side with the logo, the parts only goes in in the correct orientation.
+2. Solder the Pro Micro Qwiic from the bottom side of the PCB up into the slit (USB socket should be between
+   the cut-outs on the board, facing up)
+3. stack the Acryl and PCB in following order: Layer 01, Layer 02, PCB, Layer 03, Layer 04 and Layer 05.
+5. Screw on the M3 screws with the nut on all 7 locations.  Rubber feet should be inserted in the 4 corners
+   between the nut and the acrylic.
+
 ## License and Acknowlegements
 
 PCB design licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) by mizma, derived from
 [jfedor2/flatbox](https://github.com/jfedor2/flatbox) rev1.1 as of 2022/07/18
+
+Acrylic sandwitching shell heavily inspired by [Mille-Feuille](https://pomegd.booth.pm/items/2685530) 
+by [@pomegd](https://twitter.com/pomegd)
 
 PCB design uses the following libraries:
 

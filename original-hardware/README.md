@@ -1,5 +1,7 @@
 # Flatbox: Low profile hitbox-layout fightstick
 
+**NOTE: This is the original design files as it was forked on 2022/07/18.  For the latest design, refer to [jfedor2/flatbox](https://github.com/jfedor2/flatbox)**
+
 This repository contains 3D-printable models, PCB design files and code needed to make an arcade controller that looks like this:
 
 ![Assembled Flatbox](hardware-rev2/images/Flatbox-rev2b-finished-product.jpg)

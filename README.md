@@ -1,5 +1,7 @@
 # Flatbox-ACR
 
+![Logo](logo.svg)
+
 _**Low profile hitbox-layout fightstick with Acrylic shell**_
 
 _**STILL DESIGN IN PROGRESS!! FILES MAY NOT BE COMPLETE OR OTHERWISE MAY BE DEFECTIVE IN DESIGN**_

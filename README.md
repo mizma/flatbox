@@ -2,6 +2,8 @@
 
 _**Low profile hitbox-layout fightstick with Acrylic shell**_
 
+_**STILL DESIGN IN PROGRESS!! FILES MAY NOT BE COMPLETE OR OTHERWISE MAY BE DEFECTIVE IN DESIGN**_
+
 This flatbox-acr design is based on [jfedor2/flatbox](https://github.com/jfedor2/flatbox) but with a few tweaks:
 
 * Replaced the 3D printed case with Acrylic shell, allowing to insert printed artwork.

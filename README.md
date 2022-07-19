@@ -1,20 +1,25 @@
-# Flatbox-ACR: Low profile hitbox-layout fightstick with Acrylic shell
+# Flatbox-ACR
 
-This flatbox design is based on [jfedor2/flatbox](https://github.com/jfedor2/flatbox) but with a few tweaks:
+_**Low profile hitbox-layout fightstick with Acrylic shell**_
+
+This flatbox-acr design is based on [jfedor2/flatbox](https://github.com/jfedor2/flatbox) but with a few tweaks:
 
 * Replaced the 3D printed case with Acrylic shell, allowing to insert printed artwork.
-* modified button layout to
+    * or marvel at the simplistic PCB...
+* modified button layout to:
     * Accomodate for the clearance needed for acrylic cutting
-    * To mimic the layout of the original Hitbox button layout
+    * To mimic the layout of the original Hitbox button layout(not completely but closer?)
 * Silk screen update
-    * Added small logo
+    * Added small logo instead of text (flatbox)
     * added legends for each buttons (SQUARE, CIRCLE etc.)
-    * moved logo to edge to minimize see-through when adding artwork on top
-* Patter changes
+    * moved logo to the bottom edge to minimize see-through when adding artwork on top
+* Pattern changes
     * GND Fill
     * add vias to join gnd fill
     * moved traces slightly to avoid GND islands and thin GND fills
     * added reset button for Pro Micro board
+
+![PCB Layout](hardware-rev1/images/Flatbox-rev1-pcb.jpg)
 
 Final product when assembled will look something like the following:
 
@@ -22,7 +27,8 @@ Final product when assembled will look something like the following:
 
 **TODO: replace with actual photo**
 
-There are four major versions of the Flatbox. They all use Kailh low profile (choc v1) mechanical keyboard switches. The table below lists their main features. See the README for each version for details on how to make them.
+There is currently one revision of the Flatbox-ACR.  They all use Kailh low profile (choc v1) mechanical keyboard switches.
+The table below lists their main features.  See the README for each version for details on how to make them.
 
 version | [rev1](hardware-rev1) |
 ------- | ------------------------- |

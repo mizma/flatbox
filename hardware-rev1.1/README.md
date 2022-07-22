@@ -22,14 +22,14 @@ To make one you will need:
     * https://shop.yushakobo.jp/collections/all-keyboard-parts/products/a1600ed-01-1
     * [schematics](images/tactile-switch_3x6x4.3.jpg)
 * 7x M3 screws (length 20mm)
-    * Acryl top 2mm * 3 = 6mm
+    * Acryl top 2mm * 2 + 3mm = 7mm
     * PCB 1.6mm
     * Acryl bottom 3mm * 2 = 6mm
     * Rubber feet screw depth = 3mm (using rubber feet below.  adjust for your part)
     * Rubber feet total depth = 8mm (using rubber feet below.  adjust for your part)
     * M3 nut height = 2mm
-    * min length = 18.6mm (using rubber feet below.  adjust for your part)
-    * max length = 21.6mm (using rubber feet below.  adjust for your part)
+    * min length = 19.6mm (using rubber feet below.  adjust for your part)
+    * max length = 22.6mm (using rubber feet below.  adjust for your part)
 * 7x M3 nut and acompanying rubber feet
     * Rubber feet Tochigiya [TM-TK-15](https://www.monotaro.com/p/0933/2486/?displayId=5)
     * The position of the holes are intended for feet radius of less than 8mm
@@ -77,7 +77,14 @@ I use [Elecrow](https://www.elecrow.com/acrylic-cutting.html) to cut acrylic.
 Upload the .zip file in [acrylic-shell](acrylic-shell/) to the Elecrow Acrylic cut service to order.
 .Zip file includes the dxf file and the dimentions.txt file.  PDF is just for reference.
 
-Layer 01 and 02 should be made of 3mm thickness.  Layer 03 ~ 05 should be made of 2mm thickness.
+Layer 01 and 02 should be made of 3mm thickness.
+
+For the top 3 layers, there are two options:
+
+1. Print Layer 03 at 2mm, 04 at 2mm x 2.
+    * This will produce the flatbox-acr at 13.6mm at the body (excl. rubber feet and buttons) at the cost of reset switch not being covered.
+2. Print Layer 03 at 2mm, 04 at 3mm and layer 05 at 2mm.
+    * This will produce the flatbox-acr at 14.6mm at the body (excl. rubber feet and buttons).  Reset switch will be covered at the cost of thickness and less button extrusion. (may want to tweak the button caps to have more thickness)
 
 The original design file (FreeCAD file) can be found [here](extras/acryl-design).
 

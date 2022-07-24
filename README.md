@@ -23,6 +23,7 @@ This flatbox-acr design is based on [jfedor2/flatbox](https://github.com/jfedor2
     * add vias to join gnd fill
     * moved traces slightly to avoid GND islands and thin GND fills
     * added reset button for Pro Micro board
+* Remodeled Button Caps to accomodate for the increased case-height
 
 ![PCB Layout](./hardware-rev1.1/images/Flatbox-rev1.1-pcb.jpg)
 

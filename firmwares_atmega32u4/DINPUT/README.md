@@ -7,17 +7,12 @@ It works with Flatbox-ACR [rev1.1](../hardware-rev1.1)
 * Implemented SOCD Cleaner with selection of Hitbox style and Gafro-Controller style cleaning
     * Hold R3 when connecting to set to Hitbox Style SOCD Cleaner
     * Hold L3 when connecting to set to Gafro-controller style SOCD Cleaner
+    * Hold PS when connecting to set to All Neutral SOCD Cleaner
     * Settings are saved in EEPROM so it will not change after power cycle
 * Implement Up/Down Inversion (for playing normal arcade games)
     * Hold DOWN to set to Hitbox style
     * Hold UP to invert Up and Down buttons.
     * Settings are saved in EEPROM
-
-### TODO
-
-* Clean up code...
-* change to XInput?
-    * add support for Switch??
 
 ## How to Install
 

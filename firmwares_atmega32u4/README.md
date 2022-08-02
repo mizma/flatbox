@@ -4,17 +4,17 @@ There are currently two firmwares that work with ATMEGA32U4 5V AVR boards (3.3V 
 
 Both controllers should work similarly in terms of SOCD cleaning configuration and Up/Down inversion configuration.
 
-Firmware            | [DINPUT](DINPUT)  | [LUFA](LUFA)          |
-------------------- | :---------------: | :-------------------: |
-DInput              | YES               | NO                    |
-XInput              | NO                | YES                   |
-PS3                 | YES               | NO                    |
-Switch              | NO                | YES                   |
-SOCD                | Hitbox,Gafro      | Hitbox,Gafro,NEUTRAL  |
-Vertical Inversion  | YES               | YES                   |
-DPAD emulation      | YES               | YES                   |
-Fake Left Stick     | NO                | YES                   |
-Fake Right Stick    | NO                | YES                   |
+Firmware            | [DINPUT](DINPUT)      | [LUFA](LUFA)          |
+------------------- | :-------------------: | :-------------------: |
+DInput              | YES                   | NO                    |
+XInput              | NO                    | YES                   |
+PS3                 | YES                   | NO                    |
+Switch              | NO                    | YES                   |
+SOCD                | Hitbox,Gafro,NEUTRAL  | Hitbox,Gafro,NEUTRAL  |
+Vertical Inversion  | YES                   | YES                   |
+DPAD emulation      | YES                   | YES                   |
+Fake Left Stick     | NO                    | YES                   |
+Fake Right Stick    | NO                    | YES                   |
 
 ## Configuration
 

@@ -10,10 +10,6 @@
 //#define DISABLE_NSWITCH
 //#define DISABLE_XINPUT
 
-//use real analog sticks
-//#define WITH_ANALOG
-//#define DEADZONE     50
-
 // Enable on-the-fly SOCD config. If disabled, it'll lock in
 // the default configuration but still use the SOCD resolution code.
 #define ENABLE_SOCD_CONFIG
@@ -41,29 +37,6 @@
 #define PIN_PLUS  1            //XBOX START
 #define PIN_MINUS 2            //XBOX BACK
 #define PIN_HOME  0
-
-#ifdef WITH_ANALOG
-#define PIN_LANALOGX    A0
-#define PIN_LANALOGY    A1
-#define PIN_RANALOGX    A2
-#define PIN_RANALOGY    A3
-
-typedef struct point_s {
-  int x;
-  int y;
-} point_t;
-
-typedef struct range_s {
-  point_t min;
-  point_t max;
-  point_t center;
-} range_t;
-
-range_t g_range_l = {{400, 400}, {600, 600}, {511, 511}};
-range_t g_range_r = {{400, 400}, {600, 600}, {511, 511}};
-
-bool g_calibrating = false;
-#endif
 
 /* Buttons declarations */
 #define MILLIDEBOUNCE 1 //Debounce time in milliseconds
@@ -113,44 +86,44 @@ bool xinput;
 bool modeChanged;
 
 void checkModeChange() {
+#ifdef ENABLE_SOCD_CONFIG
+  if (buttonStatus[BUTTONL3] && buttonStatus[BUTTONR3])
+  {
+    if (!modeChanged)
+    {
+      // read inputs at time of press
+      bool up = !joystickUP.read();
+      bool down = !joystickDOWN.read();
+      bool left = !joystickLEFT.read();
+      bool right = !joystickRIGHT.read();
+
+      if (up && down)
+        y_socd_type = LAST_INPUT;
+      else if (up)
+        y_socd_type = NEGATIVE;
+      else if (down)
+        y_socd_type = POSITIVE;
+      else if (!up && !down)
+        y_socd_type = NEUTRAL;
+
+      if (left && right)
+        x_socd_type = LAST_INPUT;
+      else if (left)
+        x_socd_type = NEGATIVE;
+      else if (right)
+        x_socd_type = POSITIVE;
+      else if (!left && !right)
+        x_socd_type = NEUTRAL;
+
+      EEPROM.put(4, x_socd_type);
+      EEPROM.put(6, y_socd_type);
+      modeChanged = true;
+    }
+  }
+  else 
+#endif   
   if (buttonStatus[BUTTONSTART] && buttonStatus[BUTTONSELECT])
   {
-#ifdef ENABLE_SOCD_CONFIG
-    if (buttonStatus[BUTTONL3] && buttonStatus[BUTTONR3])
-    {
-      if (!modeChanged)
-      {
-        // read inputs at time of press
-        bool up = !joystickUP.read();
-        bool down = !joystickDOWN.read();
-        bool left = !joystickLEFT.read();
-        bool right = !joystickRIGHT.read();
-
-        if (up && down)
-          y_socd_type = LAST_INPUT;
-        else if (up)
-          y_socd_type = NEGATIVE;
-        else if (down)
-          y_socd_type = POSITIVE;
-        else if (!up && !down)
-          y_socd_type = NEUTRAL;
-
-        if (left && right)
-          x_socd_type = LAST_INPUT;
-        else if (left)
-          x_socd_type = NEGATIVE;
-        else if (right)
-          x_socd_type = POSITIVE;
-        else if (!left && !right)
-          x_socd_type = NEUTRAL;
-
-        EEPROM.put(4, x_socd_type);
-        EEPROM.put(6, y_socd_type);
-        modeChanged = true;
-      }
-    }
-    else 
-#endif   
     if ( !modeChanged )
     {
         bool need_update = true;
@@ -252,31 +225,6 @@ void setup() {
 #endif
 #endif
 
-#ifdef WITH_ANALOG
-  if (digitalRead(PIN_LS) == LOW && digitalRead(PIN_RS) == LOW)
-  {
-    g_calibrating = true;
-  }
-
-  g_range_l.center.x = analogRead(PIN_LANALOGX);
-  g_range_l.center.y = analogRead(PIN_LANALOGY);
-  g_range_r.center.x = analogRead(PIN_RANALOGX);
-  g_range_r.center.y = analogRead(PIN_RANALOGY);
-
-  if (!g_calibrating)
-  {
-    EEPROM.get(8, g_range_l.min.x);
-    EEPROM.get(10, g_range_l.min.y);
-    EEPROM.get(12, g_range_l.max.x);
-    EEPROM.get(14, g_range_l.max.y);
-
-    EEPROM.get(16, g_range_r.min.x);
-    EEPROM.get(18, g_range_r.min.y);
-    EEPROM.get(20, g_range_r.max.x);
-    EEPROM.get(22, g_range_r.max.y);
-  }
-#endif
-
   SetupHardware(xinput);
   GlobalInterruptEnable();
 }
@@ -284,129 +232,16 @@ void setup() {
 
 void loop() {
   currTime = millis();
-#ifdef WITH_ANALOG
-  axisRead();
-#endif
   buttonRead();
   checkModeChange();
   convert_dpad();
   send_pad_state();
 }
 
-#ifdef WITH_ANALOG
-void axisRead()
-{
-  point_t curr;
-
-  // left analog X
-  curr.x = analogRead(PIN_LANALOGX);
-  curr.y = analogRead(PIN_LANALOGY);
-
-  if ((curr.x - g_range_l.center.x < DEADZONE) && (curr.x - g_range_l.center.x > -DEADZONE))
-    buttonStatus[AXISLX] = 127;
-  else if (curr.x < g_range_l.min.x) {
-    g_range_l.min.x = curr.x - 10;
-
-    if (g_calibrating)
-      EEPROM.put(8, g_range_l.min.x);
-
-    buttonStatus[AXISLX] = 0;
-  }
-  else if (curr.x > g_range_l.max.x) {
-    g_range_l.max.x = curr.x + 10;
-    if (g_calibrating)
-      EEPROM.put(12, g_range_l.max.x);
-    buttonStatus[AXISLX] = 255;
-  } else if (curr.x > g_range_l.center.x) {
-    buttonStatus[AXISLX] = map(curr.x, g_range_l.center.x, g_range_l.max.x, 127, 255);
-  } else if (curr.x < g_range_l.center.x) {
-    buttonStatus[AXISLX] = map(curr.x, g_range_l.min.x, g_range_l.center.x, 0, 127);
-  }
-  buttonStatus[AXISLX] *= -1;
-
-  if ((curr.y - g_range_l.center.y < DEADZONE) && (curr.y - g_range_l.center.y > -DEADZONE))
-    buttonStatus[AXISLY] = 127;
-  else if (curr.y < g_range_l.min.y) {
-    g_range_l.min.y = curr.y - 10;
-    if (g_calibrating)
-      EEPROM.put(10, g_range_l.min.y);
-    buttonStatus[AXISLY] = 0;
-  }
-  else if (curr.y > g_range_l.max.y) {
-    g_range_l.max.y = curr.y + 10;
-    if (g_calibrating)
-      EEPROM.put(14, g_range_l.max.y);
-    buttonStatus[AXISLY] = 255;
-  } else if (curr.y > g_range_l.center.y) {
-    buttonStatus[AXISLY] = map(curr.y, g_range_l.center.y, g_range_l.max.y, 127, 255);
-  } else if (curr.y < g_range_l.center.y) {
-    buttonStatus[AXISLY] = map(curr.y, g_range_l.min.y, g_range_l.center.y, 0, 127);
-  }
-  buttonStatus[AXISLY] *= -1;
-
-
-  // right analog
-
-  curr.x = analogRead(PIN_RANALOGX);
-  curr.y = analogRead(PIN_RANALOGY);
-
-  if ((curr.x - g_range_r.center.x < 50) && (curr.x - g_range_r.center.x > -50))
-    buttonStatus[AXISRX] = 127;
-  else if (curr.x < g_range_r.min.x) {
-    g_range_r.min.x = curr.x - 10;
-    if (g_calibrating)
-      EEPROM.put(16, g_range_r.min.x);
-    buttonStatus[AXISRX] = 0;
-  }
-  else if (curr.x > g_range_r.max.x) {
-    g_range_r.max.x = curr.x + 10;
-    if (g_calibrating)
-      EEPROM.put(20, g_range_r.max.x);
-    buttonStatus[AXISRX] = 255;
-  } else if (curr.x > g_range_r.center.x) {
-    buttonStatus[AXISRX] = map(curr.x, g_range_r.center.x, g_range_r.max.x, 127, 255);
-  } else if (curr.x < g_range_r.center.x) {
-    buttonStatus[AXISRX] = map(curr.x, g_range_r.min.x, g_range_r.center.x, 0, 127);
-  }
-  buttonStatus[AXISRX] *= -1;
-
-
-  if ((curr.y - g_range_r.center.y < 50) && (curr.y - g_range_r.center.y > -50))
-    buttonStatus[AXISRY] = 127;
-  else if (curr.y < g_range_r.min.y) {
-    g_range_r.min.y = curr.y - 10;
-    if (g_calibrating)
-      EEPROM.put(18, g_range_r.min.y);
-    buttonStatus[AXISRY] = 0;
-  }
-  else if (curr.y > g_range_r.max.y) {
-    g_range_r.max.y = curr.y + 10;
-    if (g_calibrating)
-      EEPROM.put(22, g_range_r.max.y);
-    buttonStatus[AXISRY] = 255;
-  } else if (curr.y > g_range_r.center.y) {
-    buttonStatus[AXISRY] = map(curr.y, g_range_r.center.y, g_range_r.max.y, 127, 255);
-  } else if (curr.y < g_range_r.center.y) {
-    buttonStatus[AXISRY] = map(curr.y, g_range_r.min.y, g_range_r.center.y, 0, 127);
-  }
-  buttonStatus[AXISRY] *= -1;
-
-}
-#endif
-
 void convert_dpad() {
   byte cleanButtonStatus[4] = {0};
   // Prevent SOCD inputs (left+right or up+down) from making it to the logic below.
   clean_all_socd(internalButtonStatus, cleanButtonStatus, x_socd_type, y_socd_type);
-
-#ifdef WITH_ANALOG
-  // force digital mode for dpad (TODO: allow the other modes as well)
-  buttonStatus[BUTTONUP] = cleanButtonStatus[BUTTONUP];
-  buttonStatus[BUTTONDOWN] = cleanButtonStatus[BUTTONDOWN];
-  buttonStatus[BUTTONLEFT] = cleanButtonStatus[BUTTONLEFT];
-  buttonStatus[BUTTONRIGHT] = cleanButtonStatus[BUTTONRIGHT];
-  return;
-#endif
 
   switch (state)
   {

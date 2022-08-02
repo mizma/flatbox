@@ -39,9 +39,9 @@ The table below lists their main features.  See the README for each version for 
 version | [rev1.1](hardware-rev1.1) |
 ------- | ------------------------- |
 case dimensions | 210x125x13.6mm |
-compatibility (using provided firmware) | PC, PS3 |
+compatibility (using provided firmware) | PC, PS3, Xinput, Switch |
 add-on board | Sparkfun Qwiic Pro Micro |
 onboard chip | - |
 port | USB-C |
 SMT assembly required | no |
-firmware | [ATmega32U4](firmware-atmega32u4) |
+firmware | [ATmega32U4](firmwares_atmega32u4) |

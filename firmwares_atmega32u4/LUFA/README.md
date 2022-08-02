@@ -68,6 +68,22 @@ I have added inverting the UP/DOWN input as a feature so the controller can be u
 - Select Arduino Leonardo (LUFA) as your board type (Pro-Micro is a compatible board to Leonardo)
 - Upload the code and Have Fun
 
+### How to upload
+
+When you reflash AVR boards with USB HID device software, Arduino IDE cannot automatically reset and flash the software.
+You will need to press reset button on the AVR board (SW_RST1 on Flatbox ACR) to put it into Bootloader mode to reflash.
+When you use Sparkfun Qwiik ProMicro 5V, you will need to double-click the reset button to put it into Bootloader.
+
+I recommend setting up VSCode Arduino plugin.  If you open this directory with VSCode, it is already set up so all you need to do is
+run Arduino: Verify from the command pallet.  The .hex file will be created in the Build folder.
+
+Take the .hex file and use [QMK Toolbox](https://github.com/qmk/qmk_toolbox) to flash the .hex file.
+
+In QMK Toolbox, Press OPEN and select the .hex file you just created, (or just use the one in the repository).  Select ATMega32U4 from the dropdown menu at the top right corner.
+Click the Reset button on the Pro-Micro (Double-Click on Qwiik ProMicro USB-C variant).  When you see the "Caterina device connected (usbser): ~~~" text, press Flash button.
+
+This method, while requires extra software setups, is more reliable than trying to time the Reset while Arduino IDE is doing it's thing...
+
 ## Pinout
 
 Configurable in the .ino
@@ -97,4 +113,4 @@ The key config is already setup to match Flatbox-ACR wiring.
 
 ## Donation
 
-If this project helped you, please consider going to the original works and donate to the source work ;) 
+If this project helped you, please consider going to the original works and donate to the source work ;)

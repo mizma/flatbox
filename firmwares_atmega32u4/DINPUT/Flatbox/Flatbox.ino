@@ -160,7 +160,8 @@ bool prevRight;
 
 typedef enum {
   HITBOX,   // UP&DOWN=UP, LEFT&RIGHT=NEUTRAL
-  GAFRO     // UP&DOWN=UP, LEFT&RIGHT=Last Input Wins
+  GAFRO,    // UP&DOWN=UP, LEFT&RIGHT=Last Input Wins
+  NEUTRAL   // UP&DOWN=NEUTRAL, LEFT&RIGHT=NEUTRAL
 } Socd_t;
 Socd_t socd;
 
@@ -181,10 +182,14 @@ void dpad_vinvert(bool up, bool down, bool left, bool right) {
 
 void dpad(bool up, bool down, bool left, bool right) {
   if (up && down) {
-    down = false;   // Up always wins in Hitbox
+    if (socd == NEUTRAL) {
+      up = down = false; // neutral
+    } else {
+      down = false;   // Up always wins in Hitbox
+    }
   }
   if (left && right) {
-    if (socd == HITBOX) {
+    if (socd == HITBOX || socd == NEUTRAL) {
       // SOCD cleaner: Hitbox (neutral in horizontal input)
       left = right = false;
     } else {
@@ -281,21 +286,28 @@ void setup() {
   // Read SOCD setting from EEPROM
   EEPROM.get(0, socd);
 
-  if (socd != HITBOX && socd != GAFRO) {
+  if (socd != HITBOX && socd != GAFRO && socd != NEUTRAL) {
     // Initialize EEPROM
     socd = HITBOX;
     updateSOCD = true;
   }
 
+  if (digitalRead(PIN_PS) == LOW) {
+    // If PS is pressed, change to socd to NEUTRAL
+    if (socd != NEUTRAL) {
+      socd = NEUTRAL;
+      updateSOCD = true;
+    }
+  }
   if (digitalRead(PIN_L3) == LOW) {
-    // If L3 is pressed, change to ocdHitbox to false = Gafro setup
+    // If L3 is pressed, change to socd to GAFRO
     if (socd != GAFRO) {
       socd = GAFRO;
       updateSOCD = true;
     }
   }
   if (digitalRead(PIN_R3) == LOW) {
-    // If R3 is pressed, change to ocdHitbox to true = Hitbox setup
+    // If R3 is pressed, change to socd to HITBOX
     // If both are pressed, Hitbox setting wins
     if (socd != HITBOX) {
       socd = HITBOX;

@@ -12,10 +12,8 @@ This fork is customized for the needs of Flatbox-ACR features
 
 * Removed support for analog stick
 * reorganized the customization button settings for SOCD and other features
-    * SOCD Config code required pressing start+select+L3+R3+directional keys for config.  which is super unwieldy, so the code now requires only L3+R3+directions
-    * TODO: add feature to invert dpad up/down input.
-
-## LICENSE
+    * SOCD config is now only at startup and only provide three common modes (All Neutral, Hitbox and Gafro)
+    * Added feature to configure vertical input inversion.  Useful when using Hitbox layout on non-fighting games.
 
 ## Features
 

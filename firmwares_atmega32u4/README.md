@@ -30,7 +30,7 @@ All following settings are persistent and will be kept over power cycles or rese
 | Change Input Mode | Xinput                | Not Supported     | "Start" + Reset       |
 |                   | Switch                | Not Supported     | "Select" + Reset      |
 |                   | DInput/PS3            | Default           | Not Supported         |
-| Direction Mode    | DPAD                  | Not Supported     | UP+START+SELECT       |
+| Direction Mode    | DPAD                  | Default           | UP+START+SELECT       |
 |                   | Left Analog Stick     | Not Supported     | LEFT+START+SELECT     |
 |                   | Right Analog Stick    | Not Supported     | RIGHT+START+SELECT    |
 

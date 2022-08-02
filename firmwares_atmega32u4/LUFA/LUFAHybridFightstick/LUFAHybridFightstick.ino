@@ -10,14 +10,7 @@
 //#define DISABLE_NSWITCH
 //#define DISABLE_XINPUT
 
-// Enable on-the-fly SOCD config. If disabled, it'll lock in
-// the default configuration but still use the SOCD resolution code.
-#define ENABLE_SOCD_CONFIG
-
-//make it so holding start+select triggers the HOME button
-//#define HOME_HOTKEY
-//delay in ms for start+select to become HOME in HOME_HOTKEY mode
-#define HOME_DELAY 1000
+#define SOCD_CONFIG
 
 /* PINOUT (follows Nintendo naming (X=up, B=down)) */
 #define PIN_UP    9
@@ -81,62 +74,34 @@ Socd_t x_socd_type = NEUTRAL; // controls left/right and up/down resolution type
 Socd_t y_socd_type = NEGATIVE;
 Socd_t x_initial_input, y_initial_input = NEUTRAL;
 
+typedef enum {
+  CVERT_NORMAL,     // Middle input is DOWN (Hitbox style)
+  CVERT_INVERT        // Middle input is UP (for normal arcade style)
+} CardVert_t;
+CardVert_t cvert;
+
 /* mode selectors */
 bool xinput;
 bool modeChanged;
 
 void checkModeChange() {
-#ifdef ENABLE_SOCD_CONFIG
-  if (buttonStatus[BUTTONL3] && buttonStatus[BUTTONR3])
-  {
-    if (!modeChanged)
-    {
-      // read inputs at time of press
-      bool up = !joystickUP.read();
-      bool down = !joystickDOWN.read();
-      bool left = !joystickLEFT.read();
-      bool right = !joystickRIGHT.read();
-
-      if (up && down)
-        y_socd_type = LAST_INPUT;
-      else if (up)
-        y_socd_type = NEGATIVE;
-      else if (down)
-        y_socd_type = POSITIVE;
-      else if (!up && !down)
-        y_socd_type = NEUTRAL;
-
-      if (left && right)
-        x_socd_type = LAST_INPUT;
-      else if (left)
-        x_socd_type = NEGATIVE;
-      else if (right)
-        x_socd_type = POSITIVE;
-      else if (!left && !right)
-        x_socd_type = NEUTRAL;
-
-      EEPROM.put(4, x_socd_type);
-      EEPROM.put(6, y_socd_type);
-      modeChanged = true;
-    }
-  }
-  else 
-#endif   
   if (buttonStatus[BUTTONSTART] && buttonStatus[BUTTONSELECT])
   {
     if ( !modeChanged )
     {
-        bool need_update = true;
-        if (internalButtonStatus[BUTTONLEFT])
-          state = ANALOG_MODE;
-        else if (internalButtonStatus[BUTTONRIGHT])
-          state = RIGHT_ANALOG_MODE;
-        else if (internalButtonStatus[BUTTONUP])
-          state = DIGITAL;
-        else need_update = false;
+      State_t last_state;
 
-        if (need_update) EEPROM.put(0, state);
-        modeChanged = true;
+      last_state = state; 
+
+      if (internalButtonStatus[BUTTONLEFT])
+        state = ANALOG_MODE;
+      else if (internalButtonStatus[BUTTONRIGHT])
+        state = RIGHT_ANALOG_MODE;
+      else if (internalButtonStatus[BUTTONUP])
+        state = DIGITAL;
+
+      if (last_state != state) EEPROM.put(0, state);
+      modeChanged = true;
     }
     else
     {
@@ -146,8 +111,14 @@ void checkModeChange() {
 }
 
 void setupPins() {
-  joystickUP.attach(PIN_UP, INPUT_PULLUP);
-  joystickDOWN.attach(PIN_DOWN, INPUT_PULLUP);
+  if (cvert == CVERT_INVERT) {
+    // Inverted Up/Down input
+    joystickUP.attach(PIN_DOWN, INPUT_PULLUP);
+    joystickDOWN.attach(PIN_UP, INPUT_PULLUP);
+  } else { // CVERT_NORMAL (Default)
+    joystickUP.attach(PIN_UP, INPUT_PULLUP);
+    joystickDOWN.attach(PIN_DOWN, INPUT_PULLUP);
+  }
   joystickLEFT.attach(PIN_LEFT, INPUT_PULLUP);
   joystickRIGHT.attach(PIN_RIGHT, INPUT_PULLUP);
   buttonA.attach(PIN_A, INPUT_PULLUP);     // XBOX B
@@ -185,13 +156,43 @@ void setupPins() {
 
 void setup() {
 
+  bool updateCVert = false;
   modeChanged = false;
   EEPROM.get(0, state);
   EEPROM.get(2, xinput);
-#ifdef ENABLE_SOCD_CONFIG
+#ifdef SOCD_CONFIG
   EEPROM.get(4, x_socd_type);
   EEPROM.get(6, y_socd_type);
 #endif
+
+  // setup cardinal middle button settings
+  EEPROM.get(8, cvert);
+
+  if (cvert != CVERT_NORMAL && cvert != CVERT_INVERT) {
+    // Initialize to Hitbox style if EEPROM is not initialized
+    cvert = CVERT_NORMAL;
+    updateCVert = true;
+  }
+
+  if (digitalRead(PIN_UP) == LOW) {
+    // set to standard arcade style setup
+    if  (cvert != CVERT_INVERT) {
+      cvert = CVERT_INVERT;
+      updateCVert = true;
+    }
+  }
+  if (digitalRead(PIN_DOWN) == LOW) {
+    // set to standard Hitbox style setup
+    if  (cvert != CVERT_NORMAL) {
+      cvert = CVERT_NORMAL;
+      updateCVert = true;
+    }
+  }
+
+  if (updateCVert) {
+    EEPROM.put(8, cvert);
+  }
+
   setupPins();
   delay(500);
 
@@ -223,6 +224,32 @@ void setup() {
     }
   }
 #endif
+#endif
+
+  // TODO: add setting for inverting Up/Down
+
+#ifdef SOCD_CONFIG
+  // Configure SOCD cleaning type at startup.
+  {
+    if (digitalRead(PIN_HOME) == LOW) {
+      // If HOME is pressed, change to all Neutral SOCD setup
+      y_socd_type = NEUTRAL;
+      x_socd_type = NEUTRAL;
+    }
+    if (digitalRead(PIN_LS) == LOW) {
+      // If LS is pressed, change to Gafro style SOCD setup
+      y_socd_type = NEGATIVE;
+      x_socd_type = LAST_INPUT;
+    }
+    if (digitalRead(PIN_RS) == LOW) {
+      // If RS is pressed, change to Hitbox style SOCD setup
+      y_socd_type = NEGATIVE;
+      x_socd_type = NEUTRAL;
+    }
+
+    EEPROM.put(4, x_socd_type);
+    EEPROM.put(6, y_socd_type);
+  }
 #endif
 
   SetupHardware(xinput);
@@ -407,20 +434,6 @@ void buttonRead()
   if (buttonHOME.update()) {
     buttonStatus[BUTTONHOME] = buttonHOME.fell();
   }
-
-#ifdef HOME_HOTKEY
-  if (buttonStatus[BUTTONSTART] && buttonStatus[BUTTONSELECT]) {
-    if (startAndSelTime == 0)
-      startAndSelTime = millis();
-    else if (currTime - startAndSelTime > HOME_DELAY)
-    {
-      buttonStatus[BUTTONHOME] = 1;
-    }
-  } else {
-    startAndSelTime = 0;
-    buttonStatus[BUTTONHOME] = 0;
-  }
-#endif
 }
 
 

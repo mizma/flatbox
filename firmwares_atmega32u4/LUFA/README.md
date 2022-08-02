@@ -1,6 +1,6 @@
 ## LUFA Switch/XInput hybrid Fightstick firmware
 
-This firmware is a direvative of the awesome [LUFAHybridFightstick](https://github.com/CrazyRedMachine/LUFAHybridFightstick) by [CrazyRedMachine](https://github.com/CrazyRedMachine)
+This firmware is a derivative of the awesome [LUFAHybridFightstick](https://github.com/CrazyRedMachine/LUFAHybridFightstick) by [CrazyRedMachine](https://github.com/CrazyRedMachine)
 
 ## Acknowledgments
 
@@ -12,7 +12,11 @@ This fork is customized for the needs of Flatbox-ACR features
 
 * Removed support for analog stick
 * reorganized the customization button settings for SOCD and other features
- 
+    * SOCD Config code required pressing start+select+L3+R3+directional keys for config.  which is super unwieldy, so the code now requires only L3+R3+directions
+    * TODO: add feature to invert dpad up/down input.
+
+## LICENSE
+
 ## Features
 
 ### Gamepad modes
@@ -43,20 +47,19 @@ This is also removed since we have custom hardware that support home buttons
 
 ### SOCD Cleaning
 
-TODO: Somehow, the SOCD configuration feature did not seem to work, so will need to work on some other implementation.  probably only on start up since Flatbox-ACR has dedicated Reset switch.
-Also, we don't need this Entire flexibility, so we may stick to some common configurations.
+* HOME at startup = All NEUTRAL
+* RS at startup = Hitbox style SOCD cleaning (Up+Down=Up, Left+Right=Neutral)
+* LS at startup = Gafro style SOCD cleaning (Up+Down=Up, Left+Right=Last Input)
 
-* UP+DOWN=NEUTRAL, LEFT+RIGHT=NEUTRAL (All Neutral SOCD)
-* UP+DOWN=UP, LEFT+RIGHT=NEUTRAL (normal Hitbox style SOCD)
-* UP+DOWN=UP, LEFT+RIGHT=Last one wins (Gafro-controller style SOCD)
+You can use the Reset button on the Flatbox-ACR while holding the buttons above to change mode.
 
 ### UP-DOWN inverse
 
-**TODO**
+Since Flatbox-ACR is a Hitbox style controller, Up and Down button layout is a little convoluted for normal use outside its fighting game use-case.
+I have added inverting the UP/DOWN input as a feature so the controller can be used a little easier on normal games... (although it still feels a little unweildy TBH.)
 
-Since Hitbox style dpad is unique in Up/Down key arrangements, it is not very intuitive outside the intended Fighting games.
-
-This configuration allows to swap the Up and Down keys so middle button is Up instead of down to make it a little more manageable in normal games.
+* To invert UP and DOWN inputs, press UP at startup.
+* To set to normal mode, press DOWN at startup.
 
 ## Building Instructions
 
@@ -96,4 +99,4 @@ The key config is already setup to match Flatbox-ACR wiring.
 
 ## Donation
 
-If this project helped you, please consider going to the original work and donate to the source work ;)
+If this project helped you, please consider going to the original works and donate to the source work ;) 

@@ -6,15 +6,15 @@ Both controllers should work similarly in terms of SOCD cleaning configuration a
 
 Firmware            | [DINPUT](DINPUT)      | [LUFA](LUFA)          |
 ------------------- | :-------------------: | :-------------------: |
-DInput              | YES                   | NO                    |
-XInput              | NO                    | YES                   |
-PS3                 | YES                   | NO                    |
-Switch              | NO                    | YES                   |
+DInput              | **YES**               | NO                    |
+XInput              | NO                    | **YES**               |
+PS3                 | **YES**               | NO                    |
+Switch              | NO                    | **YES**               |
 SOCD                | Hitbox,Gafro,NEUTRAL  | Hitbox,Gafro,NEUTRAL  |
-Vertical Inversion  | YES                   | YES                   |
-DPAD emulation      | YES                   | YES                   |
-Fake Left Stick     | NO                    | YES                   |
-Fake Right Stick    | NO                    | YES                   |
+Vertical Inversion  | **YES**               | **YES**               |
+DPAD emulation      | **YES**               | **YES**               |
+Fake Left Stick     | NO                    | **YES**               |
+Fake Right Stick    | NO                    | **YES**               |
 
 ## Configuration
 

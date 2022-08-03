@@ -10,6 +10,7 @@ and [bootsector's XInputPadMicro](https://github.com/bootsector/XInputPadMicro),
 
 This fork is customized for the needs of Flatbox-ACR features
 
+* Remapped keys to work with Flatbox-ACR layout
 * Removed support for analog stick
 * reorganized the customization button settings for SOCD and other features
     * SOCD config is now only at startup and only provide three common modes (All Neutral, Hitbox and Gafro)
@@ -75,7 +76,8 @@ You will need to press reset button on the AVR board (SW_RST1 on Flatbox ACR) to
 When you use Sparkfun Qwiik ProMicro 5V, you will need to double-click the reset button to put it into Bootloader.
 
 I recommend setting up VSCode Arduino plugin.  If you open this directory with VSCode, it is already set up so all you need to do is
-run Arduino: Verify from the command pallet.  The .hex file will be created in the Build folder.
+run Arduino: Verify from the command pallet (You will still need to install Arduino, Bounce Library and add the LUFA board manager URL before you can run verify).
+The .hex file will be created in the Build folder.
 
 Take the .hex file and use [QMK Toolbox](https://github.com/qmk/qmk_toolbox) to flash the .hex file.
 

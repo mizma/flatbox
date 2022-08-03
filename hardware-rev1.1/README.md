@@ -108,12 +108,52 @@ The Acrylic should look like the following (with PCB stacked)
 1. Solder all the Choc v1 switches and the tactile switches.  make sure you populate the side with the logo.
     * If you populate the side with the logo, the parts only goes in in the correct orientation.
     * If you use the hot-swap sockets, those will go on the back. (see silk screen on back side for orientation)
+        * For hotswap sockets, pre-solder one side of the pad on PCB, place the socket, heat the pre-solder while
+          pressing down on the socket to attach the socket.  After It is attached, solder the other side fully
+          and then add more solder on the pre-soldered side.
 2. Solder the Pro Micro Qwiic from the bottom side of the PCB up into the slit (USB socket should be between
    the cut-outs on the board, facing up)
+    1.  First, mask the front side holes on the PCB with masking tape, and poke a small hole in each Through-hole
+        with a needle.
+        ![Mask Through-holes](images/Soldering-1.jpg)
+    2. Insert a short (2~3cm) tin coated wire in the hole and solder onto the board.  Then cut the excess wire
+       on the front side.
+       ![Tin Coated Wires](images/Soldering-2.jpg)
+       ![Place Wire](images/Soldering-3.jpg)
+       ![Solder backside](images/Soldering-4.jpg)
+    3. Remove the masking tape.  The back side should have a flat solder filled hole with wires coming out 
+       the middle.
+       ![Flat Filled Through-holes](images/Soldering-5.jpg)
+    4. Place the Pro-Micro into the wires, tape it down to place.  Also tape the entire front side of 
+       the soldered through-holes so the wires don't fall when solder melts.
+       ![Place Pro-Micro into Wires](images/Soldering-6.jpg)
+    5. Solder the Pro-Micro to the tin-coated wire.
+       ![Soldered Pro-Micro](images/Soldering-7.jpg)
 3. stack the Acryl and PCB in following order: Layer 01, Layer 02, PCB, Layer 03, Layer 04 and Layer 05.
     * If you use 2 Layer 4s, the order should be 01, 02, 03, 04, 04.
-5. Screw on the M3 screws with the nut on all 7 locations.  Rubber feet should be inserted in the 4 corners
+4. Screw on the M3 screws with the nut on all 7 locations.  Rubber feet should be inserted in the 4 corners
    between the nut and the acrylic.
+
+It should look like the following when assembled.
+
+![Flatbox-rev1.1](images/Flatbox-rev1.1-bare.jpg)
+
+### Pro-Tip 1. Filing the Acrylic Edges
+
+Acrylic Edges after laser cutting can be quite sharp and do not feel good.
+You may want to file the edges with sandpaper (#400 is a nice place to start) to remove the edges 
+on the top acrylic layer so it does not feel bad.
+
+### Pro-Tip 2. Customizing design
+
+You can also insert some artwork below the top acrylic layer as below:
+
+![Flatbox-rev1.1_with_artwork](images/Flatbox-rev1.1-withFanArt.jpg)
+
+(*) Above sample Artwork based on a trace of In-Game Screenshot + Official Fan-kit (©ARK SYSTEM WORKS)
+
+Stencil for the artwork can be found [HERE](images/Flatbox-ACR-Stencil_300dpi.png).  The stencil is in
+300dpi so print the image at 300dpi to adjust size.
 
 ## License and Acknowlegements
 

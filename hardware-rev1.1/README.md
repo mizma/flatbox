@@ -112,9 +112,9 @@ The Acrylic should look like the following (with PCB stacked)
           pressing down on the socket to attach the socket.  After It is attached, solder the other side fully
           and then add more solder on the pre-soldered side.
 2. Solder the Pro Micro Qwiic from the bottom side of the PCB up into the slit (USB socket should be between
-   the cut-outs on the board, facing up)
-    1.  First, mask the front side holes on the PCB with masking tape, and poke a small hole in each Through-hole
-        with a needle.
+   the cut-outs on the board, facing up) (Following instruction is how I did it.  There may be other ways)
+    1.  First, mask the back side holes on the PCB with masking tape, and poke a small hole in each Through-hole
+        with a needle. (This is to stop creating solder filets on the side the ProMicro will be soldered to.
         ![Mask Through-holes](images/Soldering-1.jpg)
     2. Insert a short (2~3cm) tin coated wire in the hole and solder onto the board.  Then cut the excess wire
        on the front side.
@@ -131,8 +131,8 @@ The Acrylic should look like the following (with PCB stacked)
        ![Soldered Pro-Micro](images/Soldering-7.jpg)
 3. stack the Acryl and PCB in following order: Layer 01, Layer 02, PCB, Layer 03, Layer 04 and Layer 05.
     * If you use 2 Layer 4s, the order should be 01, 02, 03, 04, 04.
-4. Screw on the M3 screws with the nut on all 7 locations.  Rubber feet should be inserted in the 4 corners
-   between the nut and the acrylic.
+4. Screw on the M3 screws with the nut on all 7 locations.  Rubber feet should be inserted at least in the 4 
+   corners between the nut and the acrylic.
 
 It should look like the following when assembled.
 

@@ -208,11 +208,11 @@ void setup() {
 #else
   /* set xinput mode according to held button */
   // if select is held on boot, NSWitch mode
+  bool xinput_current = xinput;
   int value = digitalRead(PIN_MINUS);
   if (value == LOW)
   {
     xinput = false;
-    EEPROM.put(2, xinput);
   }
   // if start is held on boot, XInput mode
   else {
@@ -220,8 +220,11 @@ void setup() {
     if (value == LOW)
     {
       xinput = true;
-      EEPROM.put(2, xinput);
     }
+  }
+  if (xinput_current != xinput) {
+    // Update if changed
+    EEPROM.put(2, xinput);
   }
 #endif
 #endif
@@ -231,6 +234,9 @@ void setup() {
 #ifdef SOCD_CONFIG
   // Configure SOCD cleaning type at startup.
   {
+    Socd_t y_socd_type_current = y_socd_type;
+    Socd_t x_socd_type_current = x_socd_type;
+
     if (digitalRead(PIN_HOME) == LOW) {
       // If HOME is pressed, change to all Neutral SOCD setup
       y_socd_type = NEUTRAL;
@@ -247,8 +253,9 @@ void setup() {
       x_socd_type = NEUTRAL;
     }
 
-    EEPROM.put(4, x_socd_type);
-    EEPROM.put(6, y_socd_type);
+    // Update if any changes are made
+    if (x_socd_type_current != x_socd_type) EEPROM.put(4, x_socd_type);
+    if (y_socd_type_current != y_socd_type) EEPROM.put(6, y_socd_type);
   }
 #endif
 

@@ -30,9 +30,14 @@ This flatbox-acr design is based on [jfedor2/flatbox](https://github.com/jfedor2
 
 Final product when assembled will look something like the following:
 
-![Assembled Flatbox](hardware-rev1/images/Flatbox-rev1-finished-product.jpg)
+![Assembled Flatbox](hardware-rev1.1/images/Flatbox-rev1.1-bare.jpg)
 
-**TODO: replace with actual photo**
+You can print any fan art using the [Stencil](hardware-rev1.1/images/Flatbox-ACR-Stencil_300dpi.png) 
+to customize the looks as well.
+
+![Assembled Flatbox with Fan Art](hardware-rev1.1/images/Flatbox-rev1.1-withFanArt.jpg)
+
+(*) Artwork based on a trace of In-Game Screenshot + Official Fan-kit (©ARK SYSTEM WORKS)
 
 There is currently one revision of the Flatbox-ACR.  They all use Kailh low profile (choc v1) mechanical keyboard switches.
 The table below lists their main features.  See the README for each version for details on how to make them.

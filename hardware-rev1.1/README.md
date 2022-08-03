@@ -153,7 +153,8 @@ You can also insert some artwork below the top acrylic layer as below:
 (*) Above sample Artwork based on a trace of In-Game Screenshot + Official Fan-kit (©ARK SYSTEM WORKS)
 
 Stencil for the artwork can be found [HERE](images/Flatbox-ACR-Stencil_300dpi.png).  The stencil is in
-300dpi so print the image at 300dpi to adjust size.
+300dpi so print the image at 300dpi to adjust size. [Stencil with key labels](images/Flatbox-ACR-Stencil_with_key_label_300dpi.png)
+is also available
 
 ## License and Acknowlegements
 

@@ -26,8 +26,6 @@ This flatbox-acr design is based on [jfedor2/flatbox](https://github.com/jfedor2
     * added reset button for Pro Micro board
 * Remodeled Button Caps to accomodate for the increased case-height
 
-![PCB Layout](./hardware-rev1.1/images/Flatbox-rev1.1-pcb.jpg)
-
 Final product when assembled will look something like the following:
 
 ![Assembled Flatbox](hardware-rev1.1/images/Flatbox-rev1.1-bare.jpg)

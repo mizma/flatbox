@@ -11,6 +11,7 @@ This flatbox-acr design is based on [jfedor2/flatbox](https://github.com/jfedor2
 
 * Replaced the 3D printed case with Acrylic shell, allowing to insert printed artwork.
     * or marvel at the simplistic PCB...
+    * Heavily inspired by y [Mille-Feuille](https://pomegd.booth.pm/items/2685530) by [@pomegd](https://twitter.com/pomegd)
 * modified button layout to:
     * Accomodate for the clearance needed for acrylic cutting
     * To mimic the layout of the original Hitbox button layout(based off of official stencil)

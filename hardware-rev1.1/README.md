@@ -154,7 +154,13 @@ You can also insert some artwork below the top acrylic layer as below:
 
 Stencil for the artwork can be found [HERE](images/Flatbox-ACR-Stencil_300dpi.png).  The stencil is in
 300dpi so print the image at 300dpi to adjust size. [Stencil with key labels](images/Flatbox-ACR-Stencil_with_key_label_300dpi.png)
-is also available
+is also available.
+
+To cut the stencil, use one of the top acrylic plates as cutting guides (don't trust the acuracy
+of the printed stencil mark, they are good enough to use as design guide, but not acurate enough for 
+final cutting guide).  It is easy to cut if you tape the plate on top of the print.
+
+![Stencil-Cutting](images/Stencil-Cutting.jpg)
 
 ## License and Acknowlegements
 

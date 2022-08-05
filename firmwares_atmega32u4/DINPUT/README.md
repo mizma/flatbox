@@ -1,3 +1,5 @@
+[日本語はこちら](README_ja.md)
+
 This is Arduino code for a USB arcade controller, meant to be used with ATmega32U4-based boards like the Arduino Pro Micro.
 
 It works with Flatbox-ACR [rev1.1](../hardware-rev1.1)
@@ -14,39 +16,28 @@ It works with Flatbox-ACR [rev1.1](../hardware-rev1.1)
     * Hold UP to invert Up and Down buttons.
     * Settings are saved in EEPROM
 
-## How to Install
+## Building Instructions
 
-### Using Arduino IDE (Only for the first time you flash the board.)
+- Download Arduino IDE, 
+- Download the Bounce2 Library inside the Arduino IDE
+- Add `https://github.com/CrazyRedMachine/Arduino-Lufa/raw/master/package_arduino-lufa_index.json` as an Additional Board Manager URL (in `File -> Preferences` menu)
+- Install LUFA AVR Boards from the Board Manager
+- Select Arduino Leonardo (LUFA) as your board type (Pro-Micro is a compatible board to Leonardo)
+- Upload the code and Have Fun
 
-You can use the Arduino IDE to flash the firmware, but this is somewhat convoluted since you need
-to time your board reset to the Arduino IDEs flash timing (Arduino doesn't allow you to just flash .hex files,
-and insist that flashing happen with a compile process)
+### How to upload
 
-1. Load the .ino file in Arduino IDE
-2. In board selection, select Sparkfun ProMicro, or some other ProMicro that you chose.
-3. In Processor selection, select the appropriate processor (ATMega32U4 3.3V or 5V)
-4. Press the button on top left (the → button)
-5. When you see Flashing Board or some message, double-click the SW_RST1 button on the Flatbox-ACR
-    * Pressing Reset is not necessary for the very first time you flash a board.
-    * For re-flashing a board already flashed with HID type firmware, I recommend using QMKToolbox as described below.
+When you reflash AVR boards with USB HID device software, Arduino IDE cannot automatically reset and flash the software.
+You will need to press reset button on the AVR board (SW_RST1 on Flatbox ACR) to put it into Bootloader mode to reflash.
+When you use Sparkfun Qwiik ProMicro 5V, you will need to double-click the reset button to put it into Bootloader.
 
-### Using [QMKToolbox](https://github.com/qmk/qmk_toolbox)
+I recommend setting up VSCode Arduino plugin.  If you open this directory with VSCode, it is already set up so all you need to do is
+run Arduino: Verify from the command pallet (You will still need to install Arduino, Bounce Library and add the LUFA board manager URL before you can run verify).
+The .hex file will be created in the Build folder.
 
-You can use QMKToolbox to write the .hex files which is easier for timing the write process.
+Take the .hex file and use [QMK Toolbox](https://github.com/qmk/qmk_toolbox) to flash the .hex file.
 
-1. Prepare the .hex file to flash (you can use the one included in the repository)
-2. Install QMKToolbox
-3. from QMKToolbox tools menu, select Install Drivers (only needed first time)
-4. OPEN the hex file you prepared in 1.
-5. select ATMega32U4 from dropdown (below "MCU AVR Only")
-6. double click the SW_RST1 switch on the Flatbox-ACR board and wait to see the yellow text
-   saying "Caterina device connected (usbser)"
-7. Right after you see the above message, click on Flash button.
-8. If you see "Flash Complete" you are done.
+In QMK Toolbox, Press OPEN and select the .hex file you just created, (or just use the one in the repository).  Select ATMega32U4 from the dropdown menu at the top right corner.
+Click the Reset button on the Pro-Micro (Double-Click on Qwiik ProMicro USB-C variant).  When you see the "Caterina device connected (usbser): ~~~" text, press Flash button.
 
-#### To make your own .hex file
-
-1. To obtain the .hex file, use the Arduino IDE and press verify.
-2. after verify is complete, navigate to "%LOCALAPPDATA%\Temp\arduino_build_XXXXXXX" (XXXXXX is a random number)
-3. Find the .hex file inside the folder and copy to some location that is easy to find.
-4. Use QMKToolbox to flash the .hex file as explained above.
+This method, while requires extra software setups, is more reliable than trying to time the Reset while Arduino IDE is doing it's thing...

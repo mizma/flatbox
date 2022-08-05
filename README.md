@@ -9,6 +9,8 @@ _**STILL A DESIGN IN PROGRESS!! FILES MAY NOT BE COMPLETE OR OTHERWISE MAY BE DE
 This flatbox-acr design is based on [jfedor2/flatbox](https://github.com/jfedor2/flatbox) but with a few tweaks
 (rev1.1 pcb has been redone from ground up):
 
+[日本語はこちら](README_ja.md)
+
 * Replaced the 3D printed case with Acrylic shell, allowing to insert printed artwork.
     * or marvel at the simplistic PCB...
     * Heavily inspired by y [Mille-Feuille](https://pomegd.booth.pm/items/2685530) by [@pomegd](https://twitter.com/pomegd)

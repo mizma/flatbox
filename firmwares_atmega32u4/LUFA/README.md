@@ -1,3 +1,5 @@
+[日本語はこちら](README_ja.md)
+
 ## LUFA Switch/XInput hybrid Fightstick firmware
 
 This firmware is a derivative of the awesome [LUFAHybridFightstick](https://github.com/CrazyRedMachine/LUFAHybridFightstick) by [CrazyRedMachine](https://github.com/CrazyRedMachine)

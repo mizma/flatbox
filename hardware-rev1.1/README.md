@@ -2,6 +2,8 @@
 
 _**A WORK IN PROGRESS.  PARTS ARE NOT VERIFIED YET**_
 
+[日本語はこちら](README_ja.md)
+
 This is rev1.1 of the Flatbox-ACR. In this version an Arduino Pro Micro is soldered onto the main PCB.
 
 To make one you will need:

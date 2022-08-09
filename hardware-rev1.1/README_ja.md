@@ -172,7 +172,9 @@ Layer 01と02は3mm厚で発注してください。
 
 以下のようにアクリル板の間にアートワークを差し込むことが可能です。
 
-![Flatbox-rev1.1_with_artwork](images/Flatbox-rev1.1-withFanArt.jpg)
+![Flatbox-rev1.1_with_artwork1](images/Flatbox-rev1.1-final01.jpg)
+![Flatbox-rev1.1_with_artwork1](images/Flatbox-rev1.1-final02.jpg)
+![Flatbox-rev1.1_with_artwork2](images/Flatbox-rev1.1-final03.jpg)
 
 (*) 上記の作例はギルティギアストライブのゲーム内キャプチャをトレースして作成したイラストとオフィシャル
 ファンキットを利用しています。(©ARK SYSTEM WORKS)

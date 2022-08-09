@@ -35,7 +35,7 @@ Final product when assembled will look something like the following:
 You can print any fan art using the [Stencil](hardware-rev1.1/images/Flatbox-ACR-Stencil_300dpi.png) 
 to customize the looks as well.
 
-![Assembled Flatbox with Fan Art](hardware-rev1.1/images/Flatbox-rev1.1-withFanArt.jpg)
+![Assembled Flatbox with Fan Art](hardware-rev1.1/images/Flatbox-rev1.1-final01.jpg)
 
 (*) Artwork based on a trace of In-Game Screenshot + Official Fan-kit (©ARK SYSTEM WORKS)
 

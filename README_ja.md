@@ -34,7 +34,7 @@ Flatbox ACRは[jfedor2/flatbox](https://github.com/jfedor2/flatbox)をベース�
 また、[ステンシル](hardware-rev1.1/images/Flatbox-ACR-Stencil_300dpi.png) を使うことでファンアート等
 を印刷したものを挟み込んでカスタムが可能となります。
 
-![Assembled Flatbox with Fan Art](hardware-rev1.1/images/Flatbox-rev1.1-withFanArt.jpg)
+![Assembled Flatbox with Fan Art](hardware-rev1.1/images/Flatbox-rev1.1-final01.jpg)
 
 (*) 上記の作例はギルティギアストライブのゲーム内キャプチャをトレースして作成したイラストとオフィシャル
 ファンキットを利用しています。(©ARK SYSTEM WORKS)

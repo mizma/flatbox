@@ -150,7 +150,9 @@ on the top acrylic layer so it does not feel bad.
 
 You can also insert some artwork below the top acrylic layer as below:
 
-![Flatbox-rev1.1_with_artwork](images/Flatbox-rev1.1-withFanArt.jpg)
+![Flatbox-rev1.1_with_artwork1](images/Flatbox-rev1.1-final01.jpg)
+![Flatbox-rev1.1_with_artwork1](images/Flatbox-rev1.1-final02.jpg)
+![Flatbox-rev1.1_with_artwork2](images/Flatbox-rev1.1-final03.jpg)
 
 (*) Above sample Artwork based on a trace of In-Game Screenshot + Official Fan-kit (©ARK SYSTEM WORKS)
 

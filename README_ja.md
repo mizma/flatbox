@@ -4,8 +4,6 @@
 
 _**アクリルケース型ロープロファイルHitbox風アケコン**_
 
-_**現在設計検証中です。各ファイルの互換性や構造的欠陥がある可能性があります。**_
-
 Flatbox ACRは[jfedor2/flatbox](https://github.com/jfedor2/flatbox)をベースに以下の修正を加えたHitbox風アケコンです。
 （rev1.1のPCBはゼロから設計し直しています）：
 

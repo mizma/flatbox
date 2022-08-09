@@ -1,7 +1,5 @@
 # Flatbox-ACR rev1.1
 
-_**製作途中のため各パーツの互換性は未検証です**_
-
 Flatbox ACR rev1.1 のリポジトリです。このバージョンでは Arduino Pro Micro をPCBに直接はんだ付けする
 形で設計されています。
 

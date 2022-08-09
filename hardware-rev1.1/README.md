@@ -68,6 +68,10 @@ Insertion portion may need to be adjusted in size for your 3D Printer and settin
 You may use some of the printer features but if that doesn't work, you might want to edit the original model.
 Model data are found in the same directory in a [FreeCAD](https://www.freecadweb.org/) file format.
 
+Also, since the insertion portion requires a fairly tight tolerance which is not easily achieved by 3D printers.
+To that extent, the models are modelled slightly on the larger side.  I have had fairly good results with 
+this model using SLS Nylon print but sometimes it is too large.  Which can be filed down to fit.
+
 #### Materials Consideration
 
 * Nylon

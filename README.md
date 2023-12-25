@@ -1,5 +1,9 @@
 # Flatbox-ACR
 
+_**No longer maintained.**_
+
+**New Design is available [Here](https://github.com/mizma/ergoSHIFT/) with 11 button support and GP2040-CE firmware support planned**
+
 ![Logo](logo.svg)
 
 _**Low profile hitbox-layout fightstick with Acrylic shell**_
